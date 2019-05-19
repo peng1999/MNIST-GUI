@@ -1,0 +1,11 @@
+[package]
+name = "mnist-gui"
+version = "0.1.0"
+authors = ["Peng Guanwen <pg999w@outlook.com>"]
+edition = "2018"
+
+[dependencies]
+
+[dependencies.gtk]
+version = "0.6.0"
+features = ["v3_16"]
