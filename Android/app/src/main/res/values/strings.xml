@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">MNIST GUI</string>
+    <string name="btn_clear">Clear</string>
+    <string name="btn_show">Show</string>
+</resources>
