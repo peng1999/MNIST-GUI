@@ -4,6 +4,7 @@ import android.graphics.Bitmap
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_bitmap.*
+import me.pg999w.mnistgui.tflite.MnistClassifier
 
 class BitmapActivity : AppCompatActivity() {
 
@@ -19,5 +20,10 @@ class BitmapActivity : AppCompatActivity() {
         }
 
         image_view.setImageBitmap(bitmap)
+
+        val classifier = MnistClassifier(this, MnistClassifier.Device.CPU, 1)
+        val result = classifier.use { it.recognizeImage(bitmap) }
+        val maxIndex = result.mapIndexed { i, v -> Pair(i, v) }.maxBy { it.second }!!.first
+        result_text.text = maxIndex.toString()
     }
 }

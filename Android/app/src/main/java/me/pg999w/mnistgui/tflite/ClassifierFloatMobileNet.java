@@ -13,9 +13,11 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ==============================================================================*/
 
-package org.tensorflow.lite.examples.classification.tflite;
+package me.pg999w.mnistgui.tflite;
 
 import android.app.Activity;
+import me.pg999w.mnistgui.tflite.Classifier;
+
 import java.io.IOException;
 
 /** This TensorFlowLite classifier works with the float MobileNet model. */
