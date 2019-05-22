@@ -16,23 +16,25 @@ class MnistClassifier(activity: Activity, device: Device, numThreads: Int) : Aut
         NNAPI,
     }
 
-    companion object {
+    private companion object {
         const val MODEL_PATH = "tf-cnn-mnist.tflite"
 
         const val HEIGHT = 28
 
         const val WIDTH = 28
 
-        private fun convertBitmapToByteArray(bitmap: Bitmap): Array<Array<Array<FloatArray>>> {
+        fun convertBitmapToByteArray(bitmap: Bitmap): Array<Array<Array<FloatArray>>> {
+            assert(bitmap.width == WIDTH)
+            assert(bitmap.height == HEIGHT)
             val intValues = IntArray(HEIGHT * WIDTH)
             bitmap.getPixels(intValues, 0, bitmap.width, 0, 0, bitmap.width, bitmap.height)
             // Convert the image to bytes
             val floatValues = Array(1) { Array(28) { Array(28) { FloatArray(1) } } }
             intValues.forEachIndexed { i, v ->
-                val acc = (v and 0xff +
-                        (v shr 8) and 0xff +
-                        (v shr 16) and 0xff) / 3
-                floatValues[0][i / 28][i % 28][0] = v.toFloat()
+                val acc = 255 - ((v and 0xff) +
+                        ((v shr 8) and 0xff) +
+                        ((v shr 16) and 0xff)) / 3
+                floatValues[0][i / 28][i % 28][0] = acc.toFloat()
             }
             return floatValues
         }
