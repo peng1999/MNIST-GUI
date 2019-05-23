@@ -35,6 +35,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
     implementation 'com.github.divyanshub024:AndroidDraw:v0.1'
+    implementation 'com.github.AnyChart:AnyChart-Android:1.1.2'
     implementation 'org.tensorflow:tensorflow-lite:0.0.0-nightly'
     implementation 'org.tensorflow:tensorflow-lite-gpu:0.0.0-nightly'
 }
