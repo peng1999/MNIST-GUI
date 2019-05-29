@@ -5,19 +5,32 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
+    signingConfigs {
+        release {
+            storeFile file('/home/pg999w/文档/android_key.jks')
+            storePassword STOREPASSWORD
+            keyAlias = 'key0'
+            keyPassword KEYPASSWORD
+        }
+    }
     compileSdkVersion 28
     defaultConfig {
         applicationId "me.pg999w.mnistgui"
         minSdkVersion 24
         targetSdkVersion 28
         versionCode 1
-        versionName "1.0"
+        versionName '0.1'
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        ndk {
+            abiFilters "armeabi-v7a", "arm64-v8a"
+        }
+        signingConfig signingConfigs.release
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
     aaptOptions {
